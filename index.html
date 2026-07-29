@@ -94,25 +94,36 @@
   .btn-ghost{background:transparent; color:var(--ink-soft); border:1.5px solid var(--line); text-transform:none; font-family:'Zen Kaku Gothic New', sans-serif; letter-spacing:0; font-size:13px;}
 
   #quiz{display:none; flex:1; flex-direction:column;}
-  .quiz-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
+  .quiz-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; gap:10px;}
+  .quiz-top-left{display:flex; align-items:center; gap:8px;}
+  .review-now-btn:disabled{opacity:.35; cursor:not-allowed;}
   .exit-btn{font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); background:transparent; border:1px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer;}
   .exit-btn:active{background:var(--line-soft);}
   .counter{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:.06em;}
   .counter b{color:var(--shu);}
 
-  .card-stage{flex:1; display:flex; align-items:center; justify-content:center; perspective:1400px; padding:6px 0 18px;}
+  .card-stage{flex:1; display:flex; align-items:center; justify-content:center; padding:6px 0 18px;}
   .card{position:relative; width:100%; max-width:400px; min-height:440px; cursor:pointer;}
-  .card-face{position:absolute; inset:0; background:var(--paper-2); border:1.5px solid var(--ink); border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:26px 20px; background-image: repeating-linear-gradient(0deg, var(--line-soft) 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 33.3%); text-align:center; transition:transform .5s cubic-bezier(.4,.2,.2,1); backface-visibility:hidden;}
-  .prompt-face{transform:rotateX(0deg);}
-  .answer-face{transform:rotateX(180deg); justify-content:flex-start; padding-top:52px; overflow-y:auto;}
-  .card.flipped .prompt-face{transform:rotateX(180deg);}
-  .card.flipped .answer-face{transform:rotateX(360deg);}
+  .card-face{position:absolute; inset:0; background:var(--paper-2); border:1.5px solid var(--ink); border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:26px 20px; background-image: repeating-linear-gradient(0deg, var(--line-soft) 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 33.3%); text-align:center; transition:opacity .25s ease; }
+  .prompt-face{opacity:1; pointer-events:auto; position:relative;}
+  .answer-face{opacity:0; pointer-events:none; justify-content:flex-start; padding-top:32px; overflow-y:auto;}
+
+  .remove-card-btn{
+    margin-top:8px; align-self:center;
+    font-family:'JetBrains Mono', monospace; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--shu); background:transparent; border:1px solid var(--shu); opacity:.55;
+    border-radius:999px; padding:6px 12px; cursor:pointer;
+    transition:opacity .15s ease, background .15s ease;
+  }
+  .remove-card-btn:active{opacity:.9; background:rgba(178,58,46,0.1);}
+  .card.flipped .prompt-face{opacity:0; pointer-events:none; position:absolute;}
+  .card.flipped .answer-face{opacity:1; pointer-events:auto; position:relative;}
 
   .dir-tag{position:absolute; top:12px; right:12px; font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--ink-soft); letter-spacing:.1em; text-transform:uppercase;}
   .prompt-main.jp{font-family:'Zen Kaku Gothic New', sans-serif; font-size:42px; font-weight:900; color:var(--ink); line-height:2; word-break:keep-all; letter-spacing:.02em;}
   .prompt-main.en{font-family:'Zen Kaku Gothic New', sans-serif; font-size:28px; font-weight:700; color:var(--ink); line-height:1.3;}
   .tap-hint{position:absolute; bottom:14px; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); opacity:.7;}
-  .answer-face .tap-hint{position:static; margin-top:18px; padding-bottom:6px;}
+  .answer-face .tap-hint{position:static; margin-top:12px; padding-bottom:4px;}
 
   ruby{ruby-align:center;}
   rt{font-family:'Zen Kaku Gothic New', sans-serif; font-weight:500; color:var(--shu); font-size:0.42em; user-select:none;}
@@ -129,9 +140,9 @@
 
   .stamp-mark{position:absolute; top:14px; right:14px; width:46px; height:46px; border-radius:8px; border:2.5px solid var(--shu); color:var(--shu); display:flex; align-items:center; justify-content:center; font-family:'Shippori Mincho', serif; font-weight:800; font-size:11px; transform:rotate(-8deg); opacity:.9;}
   .answer-jp{font-family:'Zen Kaku Gothic New', sans-serif; font-weight:900; font-size:27px; color:var(--ai-deep); line-height:2.1; letter-spacing:.02em;}
-  .answer-en{font-family:'Zen Kaku Gothic New', sans-serif; font-size:17px; font-weight:700; color:var(--ink); margin-top:12px;}
-  .answer-meta{font-family:'JetBrains Mono', monospace; font-size:9.5px; color:var(--ink-soft); margin-top:10px; opacity:.75;}
-  .answer-example{margin-top:18px; padding-top:16px; border-top:1px solid var(--line); width:100%;}
+  .answer-en{font-family:'Zen Kaku Gothic New', sans-serif; font-size:17px; font-weight:700; color:var(--ink); margin-top:9px;}
+  .answer-meta{font-family:'JetBrains Mono', monospace; font-size:9.5px; color:var(--ink-soft); margin-top:7px; opacity:.75;}
+  .answer-example{margin-top:13px; padding-top:12px; border-top:1px solid var(--line); width:100%;}
   .ex-label{font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--shu); margin-bottom:9px;}
   .ex-jp{font-family:'Zen Kaku Gothic New', sans-serif; font-size:16.5px; color:var(--ink); line-height:2.2;}
   .ex-en{font-size:13.5px; color:var(--ink-soft); margin-top:9px; line-height:1.55;}
@@ -179,7 +190,10 @@
 
   <div id="quiz">
     <div class="quiz-top">
-      <button class="exit-btn" id="exitBtn">✕ Exit</button>
+      <div class="quiz-top-left">
+        <button class="exit-btn" id="exitBtn">✕ Exit</button>
+        <button class="exit-btn review-now-btn" id="reviewNowBtn" disabled>↻ Review now <span id="reviewCount">(0)</span></button>
+      </div>
       <div class="counter">Word <b id="countNum">1</b></div>
     </div>
 
@@ -205,12 +219,13 @@
             <div class="ex-en" id="exEn"></div>
           </div>
           <div class="tap-hint">tap for next word</div>
+          <button class="remove-card-btn" id="removeCardBtn">✕ remove from this session</button>
         </div>
       </div>
     </div>
 
     <div class="quiz-actions">
-      <button class="btn btn-ghost" id="backBtn">← Back</button>
+      <button class="btn btn-ghost" id="reviewBtn">Review</button>
       <button class="btn btn-primary" id="nextBtn">Next →</button>
     </div>
   </div>
@@ -518,8 +533,10 @@
   var exJp = document.getElementById("exJp");
   var exEn = document.getElementById("exEn");
   var countNum = document.getElementById("countNum");
-  var backBtn = document.getElementById("backBtn");
+  var reviewBtn = document.getElementById("reviewBtn");
   var nextBtn = document.getElementById("nextBtn");
+  var reviewNowBtn = document.getElementById("reviewNowBtn");
+  var reviewCountEl = document.getElementById("reviewCount");
 
   var romajiTogglePrompt = document.getElementById("romajiTogglePrompt");
   var romajiLinePrompt = document.getElementById("romajiLinePrompt");
@@ -543,6 +560,15 @@
   var revealed = false;
   var wordCount = 0;
   var lastJp = null;
+  var reviewSet = [];
+
+  function addToReview(word){
+    if(reviewSet.indexOf(word) === -1){
+      reviewSet.push(word);
+    }
+    reviewCountEl.textContent = "(" + reviewSet.length + ")";
+    reviewNowBtn.disabled = reviewSet.length === 0;
+  }
 
   function pickWord(){
     if(pool.length === 1) return pool[0];
@@ -601,10 +627,8 @@
     cardStage.classList.toggle("flipped", revealed);
   }
 
-  function goNext(){
-    if(!revealed){
-      goToIndex(idx, true);
-    } else if(idx + 1 < history.length){
+  function advanceForward(){
+    if(idx + 1 < history.length){
       goToIndex(idx + 1, false);
     } else {
       history.push(newRecord());
@@ -612,20 +636,44 @@
     }
   }
 
-  function goBack(){
-    if(revealed){
-      goToIndex(idx, false);
-    } else if(idx > 0){
-      goToIndex(idx - 1, true);
+  function goNext(){
+    if(!revealed){
+      goToIndex(idx, true);
+    } else {
+      advanceForward();
+    }
+  }
+
+  function goReview(){
+    if(!revealed){
+      goToIndex(idx, true);
+    } else {
+      addToReview(current);
+      advanceForward();
     }
   }
 
   cardStage.addEventListener("click", function(){ goNext(); });
-  backBtn.addEventListener("click", function(e){ e.stopPropagation(); goBack(); });
+  reviewBtn.addEventListener("click", function(e){ e.stopPropagation(); goReview(); });
   nextBtn.addEventListener("click", function(e){ e.stopPropagation(); goNext(); });
 
-  startBtn.addEventListener("click", function(){
-    pool = currentPool();
+  var removeCardBtn = document.getElementById("removeCardBtn");
+  removeCardBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    if(!current) return;
+    var i = pool.indexOf(current);
+    if(i > -1) pool.splice(i, 1);
+    if(pool.length === 0){
+      quizEl.style.display = "none";
+      setupEl.style.display = "block";
+      updateHint();
+      return;
+    }
+    advanceForward();
+  });
+
+  function startSession(newPool){
+    pool = newPool;
     if(pool.length === 0) return;
     lastJp = null;
     history = [newRecord()];
@@ -633,6 +681,19 @@
     setupEl.style.display = "none";
     quizEl.style.display = "flex";
     goToIndex(0, false);
+  }
+
+  startBtn.addEventListener("click", function(){
+    reviewSet = [];
+    reviewCountEl.textContent = "(0)";
+    reviewNowBtn.disabled = true;
+    startSession(currentPool());
+  });
+
+  reviewNowBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    if(reviewSet.length === 0) return;
+    startSession(reviewSet.slice());
   });
 
   document.getElementById("exitBtn").addEventListener("click", function(){
